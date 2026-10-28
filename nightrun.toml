@@ -1,0 +1,18 @@
+protected = [".github/**", ".env*", "LICENSE", "*.lock", "pyproject.toml", "nightrun.toml", ".gitattributes", ".gitignore", "AGENTS.md", "docs/agents/", "tests/test_harness.py"]
+
+[commands]
+build = "python3 -m compileall -q src tests"
+test  = "python3 -m pytest -q -p no:cacheprovider --junitxml=reports/junit.xml"
+junit = "reports/junit.xml"
+rerun = "python3 -m pytest -q -p no:cacheprovider {tests}"
+build_timeout = "15m"
+test_timeout  = "30m"
+
+[limits]
+parallel_builds = 1            # for Unreal strictly 1
+run_timeout = "30m"
+max_task_retries = 3
+min_task_window = "20m"        # do not start a task if less than this remains until -until
+
+[review]
+min_lines = 80

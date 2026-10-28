@@ -1,0 +1,18 @@
+# nightrun / OS / editors (nightrun)
+.nightrun/
+.orchestrator/
+Thumbs.db
+desktop.ini
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+reports/

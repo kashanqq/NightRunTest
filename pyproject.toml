@@ -1,0 +1,10 @@
+[project]
+name = "gamecore"
+version = "0.1.0"
+description = "Pure-Python 2D game core: ECS, tilemap, dungeon generator, pathfinding, collisions, save/load, console simulator"
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

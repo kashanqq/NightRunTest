@@ -1,0 +1,29 @@
+{
+  "name": "nightrun-worker",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "init": true,
+  "remoteUser": "nightrun",
+  "updateRemoteUserUID": true,
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+  "workspaceFolder": "/workspace",
+  "containerEnv": {
+    "NIGHTRUN_IN_CONTAINER": "1"
+  },
+  "remoteEnv": {
+    "PATH": "/home/nightrun/.local/bin:${containerEnv:PATH}",
+    "NIGHTRUN_TG_TOKEN": "${localEnv:NIGHTRUN_TG_TOKEN}",
+    "NIGHTRUN_TG_CHAT": "${localEnv:NIGHTRUN_TG_CHAT}",
+    "NIGHTRUN_TOKEN": "${localEnv:NIGHTRUN_TOKEN}",
+    "ANTHROPIC_API_KEY": "${localEnv:ANTHROPIC_API_KEY}",
+    "GEMINI_API_KEY": "${localEnv:GEMINI_API_KEY}",
+    "CLAUDE_CODE_OAUTH_TOKEN": "${localEnv:CLAUDE_CODE_OAUTH_TOKEN}"
+  },
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.claude,target=/home/nightrun/.claude,type=bind,consistency=cached",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gemini,target=/home/nightrun/.gemini,type=bind,consistency=cached",
+    "source=nightrun-cache,target=/home/nightrun/.cache,type=volume"
+  ]
+}
